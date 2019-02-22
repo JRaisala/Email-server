@@ -5,8 +5,9 @@ const Vision = require('vision');
 const Hapi = require('hapi');
 const HapiSwagger = require('hapi-swagger');
 const Pkg = require('./package.json')
+const DotEnv = require('dotenv').config();
 
-let port = "3000";
+let port = parseInt(process.env.PORT || "3000");
 let host = "localhost";
 
 console.log("Starting HTTP server", host  + ":" + port);
@@ -51,7 +52,7 @@ async function start () {
 			options: swaggerOptions
 		},
 		{ 
-			plugin: require('./api/v1/')
+			plugin: require('./src/api/v1/')
 		},
 	])
 
